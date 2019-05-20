@@ -46,7 +46,7 @@ Base.prepare(db.engine, reflect=True)
 
 # Save references to each table
 Hale = Base.classes.hale
-LexByCountry = Base.classes.lexbycountry
+Lex = Base.classes.lex
 #
 #
 
@@ -62,7 +62,7 @@ def names():
     """Return a list of countries."""
 
     # Use Pandas to perform the sql query
-    stmt = db.session.query(LexByCountry).statement
+    stmt = db.session.query(Lex).statement
     df = pd.read_sql_query(stmt, db.session.bind)
     df.head()
     # Return a list of the column names (sample names)
@@ -72,7 +72,7 @@ def names():
 @app.route("/data")
 def all_data():
     """Return all data."""
-    stmt = db.session.query(LexByCountry).statement
+    stmt = db.session.query(Lex).statement
     df = pd.read_sql_query(stmt, db.session.bind)
     df['Year'] = df['Year'].astype(str)
     jsonfiles = json.loads(df.to_json(orient='records'))
