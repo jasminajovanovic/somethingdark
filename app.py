@@ -59,7 +59,7 @@ def index():
 
 
 @app.route("/countries")
-def names():
+def countries():
     """Return a list of countries."""
 
     # Use Pandas to perform the sql query
@@ -70,8 +70,8 @@ def names():
     return jsonify(list(df['Country'].unique()))
 
 
-@app.route("/data")
-def all_data():
+@app.route("/hale")
+def hale():
     """Return all data."""
     stmt = db.session.query(Lex).statement
     df = pd.read_sql_query(stmt, db.session.bind)
@@ -89,53 +89,14 @@ def obesity():
     return jsonify(jsonfiles)
 
 
-@app.route("/hales/<country>")
-def hale(country):
-    """Return the data for a given country."""
-    sel = [
-        Samples_Metadata.sample,
-        Samples_Metadata.ETHNICITY,
-        Samples_Metadata.GENDER,
-        Samples_Metadata.AGE,
-        Samples_Metadata.LOCATION,
-        Samples_Metadata.BBTYPE,
-        Samples_Metadata.WFREQ,
-    ]
-
-    results = db.session.query(
-        *sel).filter(Samples_Metadata.sample == sample).all()
-
-    print(results)
-  # Create a dictionary entry for each row of metadata information
-    sample_metadata = {}
-    for result in results:
-        sample_metadata["sample"] = result[0]
-        sample_metadata["ETHNICITY"] = result[1]
-        sample_metadata["GENDER"] = result[2]
-        sample_metadata["AGE"] = result[3]
-        sample_metadata["LOCATION"] = result[4]
-        sample_metadata["BBTYPE"] = result[5]
-        sample_metadata["WFREQ"] = result[6]
-
-    return jsonify(sample_metadata)
+@app.route("/hale/<country>")
+def hale_country(country):
+    """Return the HALE data for a given country."""
 
 
-@app.route("/lexs/<country>")
-def samples(country):
-    """Return `otu_ids`, `otu_labels`,and `sample_values`."""
-    stmt = db.session.query(Samples).statement
-    df = pd.read_sql_query(stmt, db.session.bind)
-
-    # Filter the data based on the sample number and
-    # only keep rows with values above 1
-    sample_data = df.loc[df[sample] > 1, ["otu_id", "otu_label", sample]]
-    # Format the data to send as json
-    data = {
-        "otu_ids": sample_data.otu_id.values.tolist(),
-        "sample_values": sample_data[sample].values.tolist(),
-        "otu_labels": sample_data.otu_label.tolist(),
-    }
-    return jsonify(data)
+@app.route("/obesity/<country>")
+def obesity_country(country):
+    """Return obesity data for a given country"""
 
 
 if __name__ == "__main__":
