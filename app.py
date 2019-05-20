@@ -48,6 +48,7 @@ Base.prepare(db.engine, reflect=True)
 Hale = Base.classes.hale
 Lex = Base.classes.lex
 Obesity = Base.classes.obesity
+Glucose = Base.classes.glucose
 #
 #
 
@@ -84,6 +85,15 @@ def hale():
 def obesity():
     """Return all obesity data"""
     stmt = db.session.query(Obesity).statement
+    df = pd.read_sql_query(stmt, db.session.bind)
+    jsonfiles = json.loads(df.to_json(orient='records'))
+    return jsonify(jsonfiles)
+
+
+@app.route("/glucose")
+def glucose():
+    """Return all obesity data"""
+    stmt = db.session.query(Glucose).statement
     df = pd.read_sql_query(stmt, db.session.bind)
     jsonfiles = json.loads(df.to_json(orient='records'))
     return jsonify(jsonfiles)
