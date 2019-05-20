@@ -47,6 +47,7 @@ Base.prepare(db.engine, reflect=True)
 # Save references to each table
 Hale = Base.classes.hale
 Lex = Base.classes.lex
+Obesity = Base.classes.obesity
 #
 #
 
@@ -75,6 +76,15 @@ def all_data():
     stmt = db.session.query(Lex).statement
     df = pd.read_sql_query(stmt, db.session.bind)
     df['Year'] = df['Year'].astype(str)
+    jsonfiles = json.loads(df.to_json(orient='records'))
+    return jsonify(jsonfiles)
+
+
+@app.route("/obesity")
+def obesity():
+    """Return all obesity data"""
+    stmt = db.session.query(Obesity).statement
+    df = pd.read_sql_query(stmt, db.session.bind)
     jsonfiles = json.loads(df.to_json(orient='records'))
     return jsonify(jsonfiles)
 
