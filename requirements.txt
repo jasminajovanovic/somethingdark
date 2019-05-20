@@ -12,4 +12,5 @@ pytz==2018.5
 six==1.11.0
 SQLAlchemy==1.2.10
 Werkzeug==0.14.1
+pymysql==0.9.3
 gunicorn==19.7.1
