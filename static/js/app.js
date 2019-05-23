@@ -200,4 +200,9 @@ function optionChanged(newSample) {
 }
 
 // Initialize the dashboard
-init();
+// init();
+
+(async function(){
+    const data = await d3.json("/glucose").catch(error => console.warn(error));
+    console.log(data);
+  })()
