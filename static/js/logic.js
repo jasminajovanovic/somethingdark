@@ -97,5 +97,9 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
 
     // Adding legend to the map
     // ...
-    legend.addTo(myMap)
+    // legend.addTo(myMap)
+
+    L.control.layers(baseMaps, overlayMaps, {
+            collapsed: false
+    }).addTo(myMap);
 })()
