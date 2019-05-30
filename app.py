@@ -49,8 +49,21 @@ Hale = Base.classes.hale
 Lex = Base.classes.lex
 Obesity = Base.classes.obesity
 Glucose = Base.classes.glucose
+Daly = Base.classes.newDaly
 #
 #
+
+
+def return_values(data, country):
+    mydict = {}
+    if ((data['Country'] == country).any()):
+        myrow = data.loc[data['Country'] == country]
+        for key in data.columns:
+            mydict[key] = myrow.iloc[0, ][key]
+    else:
+        for key in data.columns:
+            mydict[key] = 0
+    return(mydict)
 
 
 @app.route("/")
@@ -69,6 +82,32 @@ def countries():
     df.head()
     # Return a list of the column names (sample names)
     return jsonify(list(df['Country'].unique()))
+
+
+@app.route("/daly")
+def daly():
+    """Return all daly data in geojson format"""
+
+    # data = pd.read_csv('assets/data/newDaly.csv', encoding="ISO-8859-1")
+    # data.shape
+    country_geo = 'assets/data/world-countries.json'
+
+    stmt = db.session.query(Daly).statement
+    data = pd.read_sql_query(stmt, db.session.bind)
+    # print("data is: ", data)
+    keys = data.columns.values
+    # print("keys are: ", keys)
+    with open('assets/data/world-countries.json') as f:
+        worldData = json.load(f)
+
+    # append health data to geojson object for each country
+    for feature in worldData['features']:
+        country = feature['properties']['name']
+        country_dict = return_values(data, country)
+        for key in keys:
+            feature['properties'][key] = country_dict[key]
+
+    return jsonify(worldData)
 
 
 @app.route("/hale")

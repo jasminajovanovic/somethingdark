@@ -44,6 +44,35 @@ class Current(Base):
     #     return "(id='%s', Date='%s', Type='%s', Value='%s')" % (self.id, self.Date, self.Type, self.Value)
 
 
+class Daly(Base):
+    __tablename__ = 'newDaly'
+
+    Country = Column(String(60), primary_key=True)
+    Infectious_and_parasitic_diseases = Column(Float())
+    Respiratory_Infectious = Column(Float())
+    Maternal_conditions = Column(Float())
+    Neonatal_conditions = Column(Float())
+    Nutritional_deficiencies = Column(Float())
+    Malignant_neoplasms = Column(Float())
+    Other_neoplasms = Column(Float())
+    Diabetes_mellitus = Column(Float())
+    Endocrine_blood_immune_disorders = Column(Float())
+    Mental_and_substance_use_disorders = Column(Float())
+    Neurological_conditions = Column(Float())
+    Sense_organ_diseases = Column(Float())
+    Cardiovascular_diseases = Column(Float())
+    Respiratory_diseases = Column(Float())
+    Digestive_diseases = Column(Float())
+    Genitourinary_diseases = Column(Float())
+    Skin_diseases = Column(Float())
+    Musculoskeletal_diseases = Column(Float())
+    Congenital_anomalies = Column(Float())
+    Oral_conditions = Column(Float())
+    Sudden_infant_death_syndrome = Column(Float())
+    Unintentional_injuries = Column(Float())
+    Intentional_injuries = Column(Float())
+
+
 class Glucose(Base):
     __tablename__ = 'glucose'
 
@@ -289,8 +318,8 @@ class Obesity(Base):
 
 # Set up of the table in db and the file to import
 # fileToRead = os.path.join('assets', 'data', 'lexbycountry.csv')
-fileToRead = os.path.join('assets', 'data', 'glucose.csv')
-tableToWriteTo = 'glucose'
+fileToRead = os.path.join('assets', 'data', 'newDaly.csv')
+tableToWriteTo = 'newDaly'
 
 # Panda to create a lovely dataframe
 df_to_be_written = pd.read_csv(fileToRead)
