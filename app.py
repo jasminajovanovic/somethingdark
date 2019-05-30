@@ -137,6 +137,13 @@ def glucose():
     jsonfiles = json.loads(df.to_json(orient='records'))
     return jsonify(jsonfiles)
 
+@app.route("/flags")
+def flags():
+    """Return all flag data for scatter plot"""
+    stmt = db.session.query(flagScatter).statement
+    df = pd.read_sql_query(stmt, db.session.bind)
+    jsonfiles = json.loads(df.to_json(orient='records'))
+    return jsonify(jsonfiles)
 
 @app.route("/hale/<country>")
 def hale_country(country):
