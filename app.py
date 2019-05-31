@@ -58,8 +58,12 @@ def return_values(data, country_id):
     mydict = {}
     if ((data['id'] == country_id).any()):
         myrow = data.loc[data['id'] == country_id]
-        for key in data.columns:
-            mydict[key] = myrow.iloc[0, ][key]
+        for key in data.columns.values:
+            if ((key == 'id') or (key == 'Population') or (key == 'Country')):
+                mydict[key] = myrow.iloc[0, ][key]
+            else:
+                mydict[key] = float(myrow.iloc[0, ][key].replace(',', '')) /\
+                    float(myrow.iloc[0, ]['Population'].replace(',', '')) * 100
     else:
         for key in data.columns:
             mydict[key] = 0
@@ -137,6 +141,7 @@ def glucose():
     jsonfiles = json.loads(df.to_json(orient='records'))
     return jsonify(jsonfiles)
 
+
 @app.route("/flags")
 def flags():
     """Return all flag data for scatter plot"""
@@ -144,6 +149,7 @@ def flags():
     df = pd.read_sql_query(stmt, db.session.bind)
     jsonfiles = json.loads(df.to_json(orient='records'))
     return jsonify(jsonfiles)
+
 
 @app.route("/hale/<country>")
 def hale_country(country):
