@@ -23,32 +23,38 @@ function getIntervals(range, parts) {
 }
 
 function getColor(value, min, max) {
-  // console.log(`getColor min: ${min}, max: ${max}`);
+  // console.log(`getColor min: ${min}, max: ${max}`);}
   var myintervals = getIntervals([min, max], 7)
    switch (true) {
    case Number(value) > (myintervals[5]):
-    console.log(`${value} is greater than ${myintervals[5]}`);
-     return "#ea2c2c";
+    // console.log(`${value} is greater than ${myintervals[5]}`);
+     // return "#ea2c2c";
+     return "#4d5656"
    case Number(value) > (myintervals[4]):
-   console.log(`${value} is greater than ${myintervals[4]}`);
+   // console.log(`${value} is greater than ${myintervals[4]}`);
 
-     return "#ea822c";
+     // return "#ea822c";
+     return "#717d7e"
    case Number(value) > (myintervals[3]):
-   console.log(`${value} is greater than ${myintervals[3]}`);
+   // console.log(`${value} is greater than ${myintervals[3]}`);
 
-     return "#ee9c00";
+     // return "#ee9c00";
+     return "#839192"
    case Number(value) > (myintervals[2]):
-   console.log(`${value} is greater than ${myintervals[2]}`);
+   // console.log(`${value} is greater than ${myintervals[2]}`);
 
-     return "#eecc00";
+     // return "#eecc00";
+     return "#95a5a6"
    case Number(value) > (myintervals[1]):
-   console.log(`${value} is greater than ${myintervals[1]}`);
+   // console.log(`${value} is greater than ${myintervals[1]}`);
 
-     return "#d4ee00";
+     // return "#d4ee00";
+     return "#bfc9ca";
    case Number(value) > (myintervals[0]):
-   console.log(`${value} is greater than ${myintervals[0]}`);
+   // console.log(`${value} is greater than ${myintervals[0]}`);
 
-     return "#98ee00";
+    return "#d5dbdb";
+     // return "#98ee00";
    }
 }
 
@@ -92,11 +98,14 @@ function diseaseMinMax (healthData, disease) {
     return val !== 0;
   });
 
-  // console.log(`diseaseArray is: ${diseaseArray}`);
+  // console.log(`diseaseArray for ${disease} is: ${diseaseArray}`);
   min = Math.min(...diseaseArray)
   max = Math.max(...diseaseArray)
+  // console.log(`max is for country: `)
   // console.log(`min for ${disease} is ${min}`);
-  // console.log(`max for ${disease} is ${max}`);
+  console.log(`max for ${disease} is ${max}`);
+  let i = diseaseArray.indexOf(Math.max(...diseaseArray));
+  console.log(`max for ${disease} is at index ${i}`)
   return [min, max]
 }
 
@@ -126,41 +135,48 @@ function createFeatures(healthData) {
 
     function cancerStyle(feature) {
       return {
-          fillColor: getColor(Number(feature.properties.Malignant_neoplasms), min, max),
+          fillColor: getColor(Number(feature.properties.Malignant_neoplasms),
+          diseaseMinMax(healthData, 'Malignant_neoplasms')[0],
+          diseaseMinMax(healthData, 'Malignant_neoplasms')[1]),
           weight: 2,
           opacity: 0.7,
           color: 'white',  //Outline color
-          fillOpacity: 0.2
+          fillOpacity: 0.4
       };
     }
 
+    console.log(`min for diabetes: ${diseaseMinMax(healthData, 'Diabetes_mellitus')[0]}, max for diabetes: ${diseaseMinMax(healthData, 'Diabetes_mellitus')[1]}`);
+    // console.log();
+
     function diabetesStyle(feature) {
       return {
-          fillColor: getColor(Number(feature.properties.Diabetes_mellitus), min, max),
+          fillColor: getColor(Number(feature.properties.Diabetes_mellitus),
+          diseaseMinMax(healthData, 'Diabetes_mellitus')[0],
+          diseaseMinMax(healthData, 'Diabetes_mellitus')[1]),
           weight: 2,
           opacity: 0.7,
           color: 'white',  //Outline color
-          fillOpacity: 0.2
+          fillOpacity: 0.4
       };
     }
 
     var cardio = L.geoJSON(healthData, {
         onEachFeature: function(feature, layer) {
-            layer.bindPopup("<h3>" + feature.properties.name + "Cardio: " + feature.properties.Cardiovascular_diseases);
+            layer.bindPopup("<h3>" + feature.properties.name + "<\h2><h3> Cardiovascular Diseases: " + feature.properties.Cardiovascular_diseases + "<\h3>");
           },
           style: cardioStyle
         });
 
     var malignancies = L.geoJSON(healthData, {
         onEachFeature: function(feature, layer) {
-            layer.bindPopup("<h3>" + feature.properties.name + "Cancer: " + feature.properties.Malignant_neoplasms);
+            layer.bindPopup("<h2>" + feature.properties.name + "<\h2><h3> Cancer: " + feature.properties.Malignant_neoplasms + "<\h3>");
           },
           style: cancerStyle
         });
 
     var diabetes = L.geoJSON(healthData, {
         onEachFeature: function(feature, layer) {
-            layer.bindPopup("<h3>" + feature.properties.name + "Diabetes: " + feature.properties.Diabetes_mellitus);
+            layer.bindPopup("<h2>" + feature.properties.name + "<\h2><h3> Diabetes: " + feature.properties.Diabetes_mellitus+ "<\h3>");
           },
           style: diabetesStyle
         });
