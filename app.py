@@ -50,6 +50,7 @@ Lex = Base.classes.lex
 Obesity = Base.classes.obesity
 Glucose = Base.classes.glucose
 Daly = Base.classes.newDaly
+Flags = Base.classes.flagScatter
 #
 #
 
@@ -145,7 +146,7 @@ def glucose():
 @app.route("/flags")
 def flags():
     """Return all flag data for scatter plot"""
-    stmt = db.session.query(flagScatter).statement
+    stmt = db.session.query(Flags).statement
     df = pd.read_sql_query(stmt, db.session.bind)
     jsonfiles = json.loads(df.to_json(orient='records'))
     return jsonify(jsonfiles)
