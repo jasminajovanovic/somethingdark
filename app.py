@@ -54,10 +54,10 @@ Daly = Base.classes.newDaly
 #
 
 
-def return_values(data, country):
+def return_values(data, country_id):
     mydict = {}
-    if ((data['Country'] == country).any()):
-        myrow = data.loc[data['Country'] == country]
+    if ((data['id'] == country_id).any()):
+        myrow = data.loc[data['id'] == country_id]
         for key in data.columns:
             mydict[key] = myrow.iloc[0, ][key]
     else:
@@ -96,14 +96,14 @@ def daly():
     data = pd.read_sql_query(stmt, db.session.bind)
     # print("data is: ", data)
     keys = data.columns.values
-    # print("keys are: ", keys)
+    print("keys are: ", keys)
     with open('assets/data/world-countries.json') as f:
         worldData = json.load(f)
 
     # append health data to geojson object for each country
     for feature in worldData['features']:
-        country = feature['properties']['name']
-        country_dict = return_values(data, country)
+        country_id = feature['id']
+        country_dict = return_values(data, country_id)
         for key in keys:
             feature['properties'][key] = country_dict[key]
 

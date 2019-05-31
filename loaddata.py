@@ -71,6 +71,8 @@ class Daly(Base):
     Sudden_infant_death_syndrome = Column(Float())
     Unintentional_injuries = Column(Float())
     Intentional_injuries = Column(Float())
+    id = Column(String(3))
+    Population = Column(Float())
 
 
 class Glucose(Base):

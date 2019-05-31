@@ -99,7 +99,7 @@ L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={
     // ...
     // legend.addTo(myMap)
 
-    L.control.layers(baseMaps, overlayMaps, {
-            collapsed: false
-    }).addTo(myMap);
+    // L.control.layers(baseMaps, overlayMaps, {
+    //         collapsed: false
+    // }).addTo(myMap);
 })()
