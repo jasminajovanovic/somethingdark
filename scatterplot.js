@@ -166,9 +166,11 @@ function updateToolTip(chosenXAxis, chosenYAxis, flagsGroup) {
   return flagsGroup;
 }
 
-// Retrieve data from the CSV file and execute everything below
+// Retrieve data and execute everything below
 (async function(){
-    let healthData = await d3.csv("data.csv");
+    // let healthData = await d3.csv("data.csv");
+    var scatter = "/flags"
+    healthData = await d3.json(scatter);
 
     // parse data
     healthData.forEach(function(data) {
