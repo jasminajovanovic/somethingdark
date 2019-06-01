@@ -3,7 +3,10 @@ body {
   margin: 0;
 }
 
-#map,
+#map {
+  min-height: 800px;
+
+},
 body,
 html {
   height: 100%;
