@@ -3,9 +3,18 @@ var myMap = L.map("map", {
     center: [20, -10.0059],
     zoom: 2
 });
-var filterDict = {'Cardiovascular_diseases':0, 'Diabetes_mellitus':0,
-                  "Malignant_neoplasms" :0, "Respiratory_diseases": 0,
-                  "Infectious_and_parasitic_diseases":0, "Respiratory_Infectious":0}
+var filterDict = {
+  'Cardiovascular_diseases':0,
+  'Diabetes_mellitus':0,
+  'Malignant_neoplasms' :0,
+  'Respiratory_diseases': 0,
+  'Infectious_and_parasitic_diseases': 0,
+  'Respiratory_Infectious': 0,
+  'Sudden_infant_death_syndrome': 0,
+  'Maternal_conditions': 0,
+  'Neonatal_conditions': 0,
+  'Nutritional_deficiencies': 0,
+  'Mental_and_substance_use_disorders': 0}
 
 // Adding tile layer
 L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
@@ -76,6 +85,8 @@ function returnReadable (disease) {
       return "SIDS"
     case "Nutritional_deficiencies":
       return "Nutritional Deficiencies"
+    case "Mental_and_substance_use_disorders":
+      return "Mental and Substance Use Disorders"
   }
 }
 
@@ -106,6 +117,8 @@ function toolTipText (feature) {
                               <input id="Malignant_neoplasms" type="checkbox"/> Cancer<br>\
                               <input id="Diabetes_mellitus" type="checkbox"/> Diabetes<br>\
                               <input id="Respiratory_diseases" type="checkbox"/> Respiratory Diseases<br>\
+                              <hr>\
+                          <input id="Mental_and_substance_use_disorders" type="checkbox"/> Mental and Substance Abuse Disorders<br>\
                               <hr>\
                           <h6>Communicable</h6> \
                               <input id="Infectious_and_parasitic_diseases" type="checkbox"/> Infectious and Parasitic<br>\
@@ -143,6 +156,7 @@ function toolTipText (feature) {
     document.getElementById("Nutritional_deficiencies").addEventListener("click", handleCommand, false);
     document.getElementById("Neonatal_conditions").addEventListener("click", handleCommand, false);
     document.getElementById("Maternal_conditions").addEventListener("click", handleCommand, false);
+    document.getElementById("Mental_and_substance_use_disorders").addEventListener("click", handleCommand, false);
 
     // Grab data with D3
     data = await d3.json(APILink)
