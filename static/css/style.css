@@ -1,11 +1,13 @@
 body {
   padding: 0;
   margin: 0;
-  background-color: #707B7C;
+  /* background-color: #707B7C; */
+  background-color: black;
 }
 
 #map {
   min-height: 600px;
+  min-width: 950px;
 
 },
 body,
@@ -16,7 +18,7 @@ html {
 .info {
     padding: 6px 8px;
     /* background: white; */
-    background: rgba(255,255,255,0.8);
+    background: gray;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
 }

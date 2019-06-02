@@ -6,22 +6,34 @@
 
 .active {
   font-weight: bold;
-  fill: #000;
+  fill: white;
   transition: fill 0.3s ease-out;
   text-anchor: middle;
+  /* color: gray; */
 }
 
 .inactive {
   font-weight: lighter;
-  fill: #c9c9c9;
+  fill: gray;
   transition: fill 0.3s ease-out;
   text-anchor: middle;
 }
 
-.inactive:hover {
+.x-axis {
+  color: white;
+  fill: white;
+  stroke-width: 0.5px;
+}
+
+.y-axis {
+  color: white;
+  fill: white;
+  stroke-width: 0.5px;
+}
+/* .inactive:hover {
   fill: #000;
   cursor: pointer;
-}
+} */
 
 /* font size dependent on radius, see app.js */
 .stateText {
@@ -38,6 +50,7 @@
 .chart {
   display: block;
   margin: 0;
+
 }
 
 .d3-tip {
