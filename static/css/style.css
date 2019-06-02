@@ -1,14 +1,19 @@
 body {
   padding: 0;
   margin: 0;
+  background-color: #707B7C;
 }
 
-#map,
+#map {
+  min-height: 800px;
+
+},
 body,
 html {
   height: 100%;
 }
 
+<<<<<<< HEAD
 .info {
     padding: 6px 8px;
     background: white;
@@ -16,3 +21,9 @@ html {
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     border-radius: 5px;
 }
+=======
+h1 {
+ 
+  text-align: center;
+}
+>>>>>>> a6e70789e187406c2ad06817f04d337a3fdb5965
