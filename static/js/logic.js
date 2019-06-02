@@ -1,7 +1,7 @@
 // Creating map object
 var myMap = L.map("map", {
-    center: [-10, -10.0059],
-    zoom: 1.5
+    center: [20, -10.0059],
+    zoom: 2
 });
 var filterDict = {'Cardiovascular_diseases':0, 'Diabetes_mellitus':0,
                   "Malignant_neoplasms" :0, "Respiratory_diseases": 0,
@@ -86,12 +86,7 @@ function toolTipText (feature) {
 }
 (async function(){
     // Link to GeoJSON
-    var myChoro = null;
     const APILink = "/daly";
-    // Grab data with D3
-    data = await d3.json(APILink)
-    // drawMap(data)
-    // create the control
 
     var choices = L.control({position: 'bottomleft'});
 
@@ -130,6 +125,8 @@ function toolTipText (feature) {
     document.getElementById("Infectious_and_parasitic_diseases").addEventListener("click", handleCommand, false);
     document.getElementById("Respiratory_Infectious").addEventListener("click", handleCommand, false);
 
+    // Grab data with D3
+    data = await d3.json(APILink)
 
 
     // Set up the legend
