@@ -6,8 +6,8 @@ body {
 }
 
 #map {
-  min-height: 600px;
-  min-width: 950px;
+  min-height: 500px;
+  min-width: 1000px;
 
 },
 body,
@@ -18,9 +18,10 @@ html {
 .info {
     padding: 6px 8px;
     /* background: white; */
-    background: gray;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    background: #a9a7a7;
+    /* box-shadow: 0 0 15px white; */
     border-radius: 5px;
+    opacity: 0.75;
 }
 h1 {
 

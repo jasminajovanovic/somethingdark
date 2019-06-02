@@ -1,9 +1,8 @@
 // Creating map object
 var myMap = L.map("map", {
-    center: [20.7128, -10.0059],
+    center: [-10, -10.0059],
     zoom: 1.5
 });
-
 var filterDict = {'Cardiovascular_diseases':0, 'Diabetes_mellitus':0,
                   "Malignant_neoplasms" :0, "Respiratory_diseases": 0,
                   "Infectious_and_parasitic_diseases":0, "Respiratory_Infectious":0}
@@ -28,7 +27,7 @@ function diseaseSum (dictionary, feature) {
       mySum += feature.properties[`${key}`]
     }
   }
-  return round(mySum, 4)
+  return round(mySum, 2)
 }
 
 function drawMap(data) {
@@ -48,11 +47,43 @@ function drawMap(data) {
 
       // Binding a pop-up
       onEachFeature: function(feature, layer) {
-          layer.bindPopup("<h8>" + feature.properties.name + "<\h8><br><h10>" + diseaseSum(filterDict, feature) + "<\h10>");
+        toolTipText(feature)
+        layer.bindPopup(toolTipText(feature))
+          // layer.bindPopup("<h8>" + feature.properties.name + "<\h8><br><h10>" + diseaseSum(filterDict, feature) + "<\h10>");
         },
   }).addTo(myMap);
 }
 
+function returnReadable (disease) {
+  switch (disease) {
+    case "Cardiovascular_diseases":
+      return "Cardiovascular"
+    case "Malignant_neoplasms":
+      return "Cancer"
+    case "Diabetes_mellitus":
+      return "Diabetes"
+    case "Respiratory_diseases":
+      return "Respiratory Diseases"
+    case "Infectious_and_parasitic_diseases":
+      return "Infectious and Parasitic"
+    case "Respiratory_Infectious":
+      return "Infectious Respiratory"
+  }
+}
+
+function toolTipText (feature) {
+  total = 0
+  var returnHtml = "<h6>" + feature.properties.name + "</h6><hr>"
+  for (var key in filterDict) {
+    if (filterDict[key]) {
+      returnHtml += returnReadable(key) + ": " + round(feature.properties[`${key}`], 2) + "<br>"
+      total += feature.properties[`${key}`]
+    }
+  }
+  returnHtml += "<hr><h7> Total: " + round(total, 2) + "</h7>"
+  console.log(`return html is: ${returnHtml}`);
+  return returnHtml
+}
 (async function(){
     // Link to GeoJSON
     var myChoro = null;
@@ -62,11 +93,11 @@ function drawMap(data) {
     // drawMap(data)
     // create the control
 
-    var choices = L.control({position: 'topleft'});
+    var choices = L.control({position: 'bottomleft'});
 
     choices.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info');
-        div.innerHTML = '<h6>Non-commucable</h6><form> \
+        div.innerHTML = '<h6>Non-communicable</h6><form> \
                               <input id="Cardiovascular_diseases" type="checkbox"/> Cardiovascular<br>\
                               <input id="Malignant_neoplasms" type="checkbox"/> Cancer<br>\
                               <input id="Diabetes_mellitus" type="checkbox"/> Diabetes<br>\

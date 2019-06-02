@@ -64,7 +64,7 @@ def return_values(data, country_id):
                 mydict[key] = myrow.iloc[0, ][key]
             else:
                 mydict[key] = float(myrow.iloc[0, ][key].replace(',', '')) /\
-                    float(myrow.iloc[0, ]['Population'].replace(',', ''))
+                    float(myrow.iloc[0, ]['Population'].replace(',', '')) * 100
     else:
         for key in data.columns:
             mydict[key] = 0
