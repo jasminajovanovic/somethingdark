@@ -3,6 +3,7 @@ var myMap = L.map("map", {
     center: [20, -30],
     zoom: 2.2
 });
+
 var filterDict = {
   'Cardiovascular_diseases':0,
   'Diabetes_mellitus':0,
@@ -40,6 +41,26 @@ function diseaseSum (dictionary, feature) {
 }
 
 function drawMap(data) {
+  //
+  // L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}", {
+  //     attribution: "Map data &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
+  //     maxZoom: 18,
+  //     id: "mapbox.dark",
+  //     accessToken: API_KEY
+  // }).addTo(myMap);
+
+  //
+  // var geojson = L.choropleth(data, {
+  //     valueProperty: 0,
+  //     scale: ['white', 'red'],
+  //     steps: 50,
+  //     mode: 'q',
+  //     style: {
+  //         color: '#fff',
+  //         weight: 1,
+  //         fillOpacity: 1
+  //     },
+  // }).addTo(myMap);
 
   var geojson = L.choropleth(data, {
       valueProperty: function (feature) {
@@ -51,7 +72,7 @@ function drawMap(data) {
       style: {
           color: '#fff',
           weight: 1,
-          fillOpacity: 0.7
+          fillOpacity: 1
       },
 
       // Binding a pop-up
