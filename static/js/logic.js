@@ -28,7 +28,7 @@ function diseaseSum (dictionary, feature) {
       mySum += feature.properties[`${key}`]
     }
   }
-  return round(mySum, 2)
+  return round(mySum, 4)
 }
 function itemsChecked (dictionary) {
   for (var key in dictionary) {
@@ -75,14 +75,15 @@ function drawMap(data) {
 
     choices.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info');
-        div.innerHTML = '<h3>Non Communicable Diseases</h3><form> \
-                              <input id="Cardiovascular_diseases" type="checkbox"/>Cardiovascular Diseases<br>\
-                              <input id="Malignant_neoplasms" type="checkbox"/>Cancer<br>\
-                              <input id="Diabetes_mellitus" type="checkbox"/>Diabetes<br>\
-                              <input id="Respiratory_diseases" type="checkbox"/>Respiratory Diseases<br>\
-                          <h3>Communicable Diseases</h3> \
-                              <input id="Infectious_and_parasitic_diseases" type="checkbox"/>Infectious and Parasitic Diseases<br>\
-                              <input id="Respiratory_Infectious" type="checkbox"/>Infectious Respiratory Diseases<br>\
+        div.innerHTML = '<h6>Non Communicable Diseases</h6><form> \
+                              <input id="Cardiovascular_diseases" type="checkbox"/> Cardiovascular Diseases<br>\
+                              <input id="Malignant_neoplasms" type="checkbox"/> Cancer<br>\
+                              <input id="Diabetes_mellitus" type="checkbox"/> Diabetes<br>\
+                              <input id="Respiratory_diseases" type="checkbox"/> Respiratory Diseases<br>\
+                              <hr>\
+                          <h6>Communicable Diseases</h6> \
+                              <input id="Infectious_and_parasitic_diseases" type="checkbox"/> Infectious and Parasitic Diseases<br>\
+                              <input id="Respiratory_Infectious" type="checkbox"/> Infectious Respiratory Diseases<br>\
                           </form>';
 
         return div;
