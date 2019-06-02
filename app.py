@@ -64,7 +64,7 @@ def return_values(data, country_id):
                 mydict[key] = myrow.iloc[0, ][key]
             else:
                 mydict[key] = float(myrow.iloc[0, ][key].replace(',', '')) /\
-                    float(myrow.iloc[0, ]['Population'].replace(',', '')) * 100
+                    float(myrow.iloc[0, ]['Population'].replace(',', ''))
     else:
         for key in data.columns:
             mydict[key] = 0
@@ -101,7 +101,7 @@ def daly():
     data = pd.read_sql_query(stmt, db.session.bind)
     # print("data is: ", data)
     keys = data.columns.values
-    print("keys are: ", keys)
+    # print("keys are: ", keys)
     with open('assets/data/world-countries.json') as f:
         worldData = json.load(f)
 

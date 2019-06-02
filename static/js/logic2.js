@@ -223,9 +223,15 @@ function createMap(cardio, malignancies, diabetes) {
     // Create a layer control
     // Pass in our baseMaps and overlayMaps
     // Add the layer control to the map
-    L.control.layers(baseMaps, overlayMaps, {
+    const myControl = L.control.layers(null, overlayMaps, {
+    // L.control.layers(baseMaps, overlayMaps, {
+
           collapsed: false,
     }).addTo(myMap);
+
+    // myS
+
+    // myControl.addTo(myMap);
 
     return myMap
 }
