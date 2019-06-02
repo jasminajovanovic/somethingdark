@@ -99,9 +99,7 @@ def daly():
 
     stmt = db.session.query(Daly).statement
     data = pd.read_sql_query(stmt, db.session.bind)
-    # print("data is: ", data)
     keys = data.columns.values
-    # print("keys are: ", keys)
     with open('assets/data/world-countries.json') as f:
         worldData = json.load(f)
 
