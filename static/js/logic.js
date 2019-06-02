@@ -1,7 +1,7 @@
 // Creating map object
 var myMap = L.map("map", {
-    center: [40.7128, -74.0059],
-    zoom: 2
+    center: [20.7128, -10.0059],
+    zoom: 1.5
 });
 
 var filterDict = {'Cardiovascular_diseases':0, 'Diabetes_mellitus':0,
@@ -30,16 +30,7 @@ function diseaseSum (dictionary, feature) {
   }
   return round(mySum, 4)
 }
-function itemsChecked (dictionary) {
-  for (var key in dictionary) {
-    if (dictionary[key]) {
-      console.log(`${key} is checked`);
-      return 1
-    }
-  }
-  console.log("nothing is checked");
-  return 0
-}
+
 function drawMap(data) {
 
   var geojson = L.choropleth(data, {
@@ -52,12 +43,12 @@ function drawMap(data) {
       style: {
           color: '#fff',
           weight: 1,
-          fillOpacity: 0.8
+          fillOpacity: 0.7
       },
 
       // Binding a pop-up
       onEachFeature: function(feature, layer) {
-          layer.bindPopup("<h2>" + feature.properties.name + "<\h2><h3> Value: " + diseaseSum(filterDict, feature) + "<\h3>");
+          layer.bindPopup("<h8>" + feature.properties.name + "<\h8><br><h10>" + diseaseSum(filterDict, feature) + "<\h10>");
         },
   }).addTo(myMap);
 }
@@ -68,22 +59,22 @@ function drawMap(data) {
     const APILink = "/daly";
     // Grab data with D3
     data = await d3.json(APILink)
-    drawMap(data)
+    // drawMap(data)
     // create the control
 
     var choices = L.control({position: 'topleft'});
 
     choices.onAdd = function (map) {
         var div = L.DomUtil.create('div', 'info');
-        div.innerHTML = '<h6>Non Communicable Diseases</h6><form> \
-                              <input id="Cardiovascular_diseases" type="checkbox"/> Cardiovascular Diseases<br>\
+        div.innerHTML = '<h6>Non-commucable</h6><form> \
+                              <input id="Cardiovascular_diseases" type="checkbox"/> Cardiovascular<br>\
                               <input id="Malignant_neoplasms" type="checkbox"/> Cancer<br>\
                               <input id="Diabetes_mellitus" type="checkbox"/> Diabetes<br>\
                               <input id="Respiratory_diseases" type="checkbox"/> Respiratory Diseases<br>\
                               <hr>\
-                          <h6>Communicable Diseases</h6> \
-                              <input id="Infectious_and_parasitic_diseases" type="checkbox"/> Infectious and Parasitic Diseases<br>\
-                              <input id="Respiratory_Infectious" type="checkbox"/> Infectious Respiratory Diseases<br>\
+                          <h6>Communicable</h6> \
+                              <input id="Infectious_and_parasitic_diseases" type="checkbox"/> Infectious and Parasitic<br>\
+                              <input id="Respiratory_Infectious" type="checkbox"/> Infectious Respiratory<br>\
                           </form>';
 
         return div;
