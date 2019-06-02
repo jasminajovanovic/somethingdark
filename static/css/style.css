@@ -26,7 +26,12 @@ html {
     opacity: 0.8;
 }
 
-title, h1, h4 {
+title, h1, h4, p {
   text-align: center;
   color: white;
+}
+
+.footnote {
+  text-align: left;
+  font-size: 9pt;
 }

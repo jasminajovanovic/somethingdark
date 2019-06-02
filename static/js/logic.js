@@ -1,7 +1,7 @@
 // Creating map object
 var myMap = L.map("map", {
-    center: [20, -10.0059],
-    zoom: 2
+    center: [20, -30],
+    zoom: 2.2
 });
 var filterDict = {
   'Cardiovascular_diseases':0,
@@ -118,7 +118,7 @@ function toolTipText (feature) {
                               <input id="Diabetes_mellitus" type="checkbox"/> Diabetes<br>\
                               <input id="Respiratory_diseases" type="checkbox"/> Respiratory Diseases<br>\
                               <hr>\
-                          <input id="Mental_and_substance_use_disorders" type="checkbox"/> Mental and Substance Abuse Disorders<br>\
+                          <input id="Mental_and_substance_use_disorders" type="checkbox"/> Mental and <br>Substance Abuse Disorders<br>\
                               <hr>\
                           <h6>Communicable</h6> \
                               <input id="Infectious_and_parasitic_diseases" type="checkbox"/> Infectious and Parasitic<br>\
