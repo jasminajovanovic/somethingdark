@@ -20,22 +20,16 @@
 }
 
 .x-axis {
-  color: white;
   fill: white;
   stroke-width: 0.5px;
+  stroke: 1px;
 }
 
 .y-axis {
-  color: white;
   fill: white;
   stroke-width: 0.5px;
 }
-/* .inactive:hover {
-  fill: #000;
-  cursor: pointer;
-} */
 
-/* font size dependent on radius, see app.js */
 .stateText {
   font-family: sans-serif;
   fill: #fff;

@@ -16,13 +16,14 @@ html {
   height: 100%;
 }
 
+
 .info {
     padding: 6px 8px;
     /* background: white; */
     background: #a9a7a7;
     /* box-shadow: 0 0 15px white; */
     border-radius: 5px;
-    opacity: 0.75;
+    opacity: 0.8;
 }
 
 title, h1, h4 {

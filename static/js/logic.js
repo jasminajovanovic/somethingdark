@@ -68,6 +68,14 @@ function returnReadable (disease) {
       return "Infectious and Parasitic"
     case "Respiratory_Infectious":
       return "Infectious Respiratory"
+    case "Neonatal_conditions":
+      return "Neonatal Conditions"
+    case "Maternal_conditions":
+      return "Maternal Conditions"
+    case "Sudden_infant_death_syndrome":
+      return "SIDS"
+    case "Nutritional_deficiencies":
+      return "Nutritional Deficiencies"
   }
 }
 
@@ -84,6 +92,7 @@ function toolTipText (feature) {
   console.log(`return html is: ${returnHtml}`);
   return returnHtml
 }
+
 (async function(){
     // Link to GeoJSON
     const APILink = "/daly";
@@ -101,6 +110,12 @@ function toolTipText (feature) {
                           <h6>Communicable</h6> \
                               <input id="Infectious_and_parasitic_diseases" type="checkbox"/> Infectious and Parasitic<br>\
                               <input id="Respiratory_Infectious" type="checkbox"/> Infectious Respiratory<br>\
+                              <hr>\
+                          <h6>Maternal and Neonatal</h6>\
+                            <input id="Sudden_infant_death_syndrome" type="checkbox"/> SIDS<br>\
+                            <input id="Nutritional_deficiencies" type="checkbox"/> Nutritional Deficiencies<br>\
+                            <input id="Neonatal_conditions" type="checkbox"/> Neonatal Conditions<br>\
+                            <input id="Maternal_conditions" type="checkbox"/> Maternal Conditions<br>\
                           </form>';
 
         return div;
@@ -124,41 +139,11 @@ function toolTipText (feature) {
     document.getElementById("Respiratory_diseases").addEventListener("click", handleCommand, false);
     document.getElementById("Infectious_and_parasitic_diseases").addEventListener("click", handleCommand, false);
     document.getElementById("Respiratory_Infectious").addEventListener("click", handleCommand, false);
+    document.getElementById("Sudden_infant_death_syndrome").addEventListener("click", handleCommand, false);
+    document.getElementById("Nutritional_deficiencies").addEventListener("click", handleCommand, false);
+    document.getElementById("Neonatal_conditions").addEventListener("click", handleCommand, false);
+    document.getElementById("Maternal_conditions").addEventListener("click", handleCommand, false);
 
     // Grab data with D3
     data = await d3.json(APILink)
-
-
-    // Set up the legend
-    // const legend = L.control({ position: "bottomleft" });
-    //
-    // legend.onAdd = function() {
-    //     const div = L.DomUtil.create("div", "info legend");
-    //     const limits = geojson.options.limits;
-    //     const colors = geojson.options.colors;
-    //
-    //     // Add min & max
-    //     const legendInfo = "<h1>Cardiovascular Disease</h1>" +
-    //     "<div class=\"labels\">" +
-    //     "<div class=\"min\">" + limits[0] + "</div>" +
-    //     "<div class=\"max\">" + limits[limits.length - 1] + "</div>" +
-    //     "</div>";
-    //
-    //     div.innerHTML = legendInfo;
-    //
-    //     const labels = limits.map((limit, index) => {
-    //         return "<li style=\"background-color: " + colors[index] + "\"></li>"
-    //     })
-    //
-    //     div.innerHTML += "<ul>" + labels.join("") + "</ul>";
-    //     return div;
-    // };
-
-    // Adding legend to the map
-    // ...
-    // legend.addTo(myMap)
-
-    // L.control.layers(baseMaps, overlayMaps, {
-    //         collapsed: false
-    // }).addTo(myMap);
 })()
