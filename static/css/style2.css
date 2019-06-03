@@ -79,3 +79,7 @@ a:hover {
   margin-left: 20px;
   color: white;
 }
+
+a {
+  color: red;
+}
