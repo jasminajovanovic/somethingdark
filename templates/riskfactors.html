@@ -28,17 +28,32 @@
 </head>
 
 <body>
+  <div class="container">
+
+    <div class="row">
+
+      <!-- single column for small screens, two columns for large screens -->
+      <div class="col-xs-12 col-lg-7">
+        <a href="{{ url_for('index') }}" class="button">
+          <br>
+          <strong>Home</strong>
+        </a>
+
+      </div>
+
+    </div>
 
 
-  <div class="row">
-    <div class="col-xs-12  col-md-12">
-      <!-- <hr> -->
-      <br><br><br>
-      <h4 class="footnote">Risk Factors vs Disease in the Developed World</h4>
+    <div class="row">
+      <div class="col-xs-12  col-md-12">
+        <!-- <hr> -->
+        <br><br><br>
+        <h4 class="footnote">Risk Factors vs Disease in the Developed World</h4>
 
-      <!-- <h4><i>Risk factors vs Disease in the Developed World</i></h4> -->
-      <div id="scatter">
-        <!-- We append our chart here. -->
+        <!-- <h4><i>Risk factors vs Disease in the Developed World</i></h4> -->
+        <div id="scatter">
+          <!-- We append our chart here. -->
+        </div>
       </div>
     </div>
   </div>
