@@ -30,6 +30,10 @@
   stroke-width: 0.5px;
 }
 
+.tick text {
+  fill: white;
+}
+
 .stateText {
   font-family: sans-serif;
   fill: #fff;

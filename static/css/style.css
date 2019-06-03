@@ -7,7 +7,7 @@ body {
 
 #map {
   min-height: 500px;
-  min-width: 1000px;
+  min-width: 800px;
   background: black;
 
 },
@@ -26,12 +26,16 @@ html {
     opacity: 0.8;
 }
 
-title, h1, h4, p {
+title, h1, h4, h5{
   text-align: center;
   color: white;
 }
 
+p {
+  color: white;
+}
+
 .footnote {
-  text-align: left;
+  text-align: center;
   font-size: 9pt;
 }
