@@ -78,6 +78,21 @@ def index():
     return render_template("index.html")
 
 
+@app.route("/diseases")
+def diseases():
+    return render_template("diseases.html")
+
+
+@app.route("/riskfactors")
+def riskfactors():
+    return render_template("riskfactors.html")
+
+
+@app.route("/spending")
+def spending():
+    return render_template("spending.html")
+
+
 @app.route("/countries")
 def countries():
     """Return a list of countries."""
