@@ -83,3 +83,7 @@ a:hover {
 a {
   color: red;
 }
+
+a:visited {
+  color: red;
+}
